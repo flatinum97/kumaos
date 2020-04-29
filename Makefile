@@ -2,6 +2,7 @@ OBJECTS = loader.o drivers/io.o drivers/frame_buffer.o kmain.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
          -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
+QEMU = qemu-system-i386
 LDFLAGS = -T link.ld -melf_i386
 AS = nasm
 ASFLAGS = -f elf
@@ -16,7 +17,7 @@ os.iso: kernel.elf
 	grub-mkrescue -o os.iso iso
 
 run: os.iso
-	bochs -f bochsrc.txt -q
+	$(QEMU) -monitor stdio -cdrom $< -serial file:com1.txt
 
 %.o: %.c
 	$(CC) $(CFLAGS)  $< -o $@
@@ -25,4 +26,4 @@ run: os.iso
 	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o kernel.elf os.iso bochslog.txt
+	rm -rf *.o kernel.elf os.iso
