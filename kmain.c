@@ -2,6 +2,8 @@
 
 void kmain() {
   clear_screen();
-  print("Hello, World!");
+  char *welcome_message = "Welcome to KUMAOS!";
+  print(welcome_message);
+  move_cursor(1, 0);
   while(1);
 }

@@ -24,5 +24,6 @@
 
 void clear_screen();
 void print(char *s);
+void move_cursor(unsigned short row, unsigned short col);
 
 #endif
