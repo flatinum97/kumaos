@@ -7,7 +7,7 @@ FLAGS             equ 0x0
 CHECKSUM          equ -MAGIC_NUMBER
 KERNEL_STACK_SIZE equ 4096
 
-section .text:
+section .text
 align 4
     dd MAGIC_NUMBER
     dd FLAGS
