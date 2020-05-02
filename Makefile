@@ -1,4 +1,4 @@
-OBJECTS = loader.o drivers/io.o drivers/frame_buffer.o kmain.o
+OBJECTS = loader.o drivers/io.o drivers/frame_buffer.o drivers/serial_port.o kmain.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
          -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
@@ -17,7 +17,7 @@ os.iso: kernel.elf
 	grub-mkrescue -o os.iso iso
 
 run: os.iso
-	$(QEMU) -monitor stdio -cdrom $< -serial file:com1.txt
+	$(QEMU) -monitor stdio -cdrom $< -serial file:log/log.txt
 
 %.o: %.c
 	$(CC) $(CFLAGS)  $< -o $@
