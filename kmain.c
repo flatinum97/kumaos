@@ -1,13 +1,36 @@
 #include "drivers/frame_buffer.h"
 #include "drivers/serial_port.h"
 
-void kmain() {
+enum output_t {
+  SCREEN,
+  LOG
+};
+
+void write(enum output_t output_device, char *s)
+{
+  switch (output_device) {
+    case (SCREEN):
+      fb_write(s);
+      break;
+    case (LOG):
+      serial_write(SERIAL_COM1_BASE, s);
+      break;
+  }
+}
+
+void printf(char *s)
+{
+  write(SCREEN, s);
+}
+
+void kmain()
+{
   clear_screen();
-  char *welcome_message = "Welcome to KUMAOS!";
-  print(welcome_message);
+  static char *welcome_message = "Welcome to KUMAOS!";
+  printf(welcome_message);
 
   serial_init(SERIAL_COM1_BASE);
-  serial_print(SERIAL_COM1_BASE, "Hello, World!\n");
+  write(LOG, "Initialized serial port.\n");
 
   move_cursor(10, 0);
 
