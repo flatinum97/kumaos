@@ -1,3 +1,5 @@
+#include "../types.h"
+
 #ifndef INCLUDE_FRAME_BUFFER_H
 #define INCLUDE_FRAME_BUFFER_H
 
@@ -24,6 +26,6 @@
 
 void clear_screen();
 void fb_write(char *s);
-void move_cursor(unsigned short row, unsigned short col);
+void move_cursor(u_int16 row, u_int16 col);
 
 #endif

@@ -1,9 +1,10 @@
 #include "frame_buffer.h"
 #include "../assembly_interface.h"
+#include "../types.h"
 
-char *fb = (char *) 0x000B8000;
+u_int8 *fb = (u_int8 *) 0x000B8000;
 
-void fb_write_cell(unsigned int cell, char c, unsigned char fg, unsigned char bg)
+void fb_write_cell(u_int32 cell, u_int8 c, u_int8 fg, u_int8 bg)
 {
   int i = cell*2;
   fb[i] = c;

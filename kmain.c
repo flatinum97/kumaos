@@ -1,6 +1,7 @@
 #include "drivers/frame_buffer.h"
 #include "drivers/serial_port.h"
 #include "assembly_interface.h"
+#include "types.h"
 
 enum output_t {
   SCREEN,
@@ -8,16 +9,16 @@ enum output_t {
 };
 
 struct gdt_t {
-  unsigned int address;
-  unsigned short size;
+  u_int32 address;
+  u_int16 size;
 } __attribute__((packed));
 
 struct segment_selector {
-  unsigned short address;
-  unsigned short size;
+  u_int16 address;
+  u_int16 size;
 } __attribute__((packed));
 
-unsigned short segment_selectors[] = {
+u_int16 segment_selectors[] = {
   0x0, // null descriptor
   (0x08 << 4), // kernel code segment
   (0x10 << 4), // kernel data segment
@@ -26,7 +27,7 @@ unsigned short segment_selectors[] = {
 void initialize_gdt()
 {
   struct gdt_t gdt;
-  gdt.address = (unsigned int) segment_selectors;
+  gdt.address = (u_int32) segment_selectors;
   gdt.size = sizeof(segment_selectors);
   lgdt(&gdt);
 }
