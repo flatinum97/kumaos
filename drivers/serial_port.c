@@ -63,10 +63,15 @@ void serial_write(unsigned short com, char * s)
 {
   int i = 0;
   while(s[i]) {
+    serial_write_char(com, s[i]);
+    i++;
+  }
+}
+
+void serial_write_char(unsigned short com, char c)
+{
     // Wait if buffer is full
     while (!serial_is_transmit_fifo_empty(com)) {}
 
-    outb(SERIAL_DATA_PORT(com), s[i]);
-    i++;
-  }
+    outb(SERIAL_DATA_PORT(com), c);
 }
