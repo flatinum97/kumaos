@@ -1,5 +1,5 @@
 #include "frame_buffer.h"
-#include "io.h"
+#include "../assembly_interface.h"
 
 char *fb = (char *) 0x000B8000;
 
