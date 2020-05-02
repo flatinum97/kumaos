@@ -10,7 +10,7 @@
 
 #define SERIAL_LINE_ENABLE_DLAB 0x80
 
-void serial_configure_baud_rate(u_int16 com, u_int16 divisor)
+void serial_configure_baud_rate(uint16_t com, uint16_t divisor)
 {
   outb(SERIAL_LINE_COMMAND_PORT(com),
       SERIAL_LINE_ENABLE_DLAB);
@@ -20,7 +20,7 @@ void serial_configure_baud_rate(u_int16 com, u_int16 divisor)
       divisor & 0x00FF);
 }
 
-void serial_configure_line(u_int16 com)
+void serial_configure_line(uint16_t com)
 {
   /* Bit:     | 7 | 6 | 5 4 3 | 2 | 1 0 |
    * Content: | d | b | prty  | s | dl  |
@@ -29,7 +29,7 @@ void serial_configure_line(u_int16 com)
   outb(SERIAL_LINE_COMMAND_PORT(com), 0x03);
 }
 
-void serial_configure_fifo(u_int16 com)
+void serial_configure_fifo(uint16_t com)
 {
   /* Bit:     | 7 6 | 5  | 4 | 3   | 2   | 1   | 0 |
    * Content: | lvl | bs | r | dma | clt | clr | e |
@@ -38,7 +38,7 @@ void serial_configure_fifo(u_int16 com)
   outb(SERIAL_FIFO_COMMAND_PORT(com), 0xC7);
 }
 
-void serial_configure_modem(u_int16 com)
+void serial_configure_modem(uint16_t com)
 {
   /* Bit:     | 7 | 6 | 5  | 4  | 3   | 2   | 1   | 0   |
    * Content: | r | r | af | lb | ao2 | ao1 | rts | dtr |
@@ -47,20 +47,20 @@ void serial_configure_modem(u_int16 com)
   outb(SERIAL_MODEM_COMMAND_PORT(com), 0x03);
 }
 
-void serial_init(u_int16 com) {
+void serial_init(uint16_t com) {
   serial_configure_baud_rate(com, 2);
   serial_configure_line(com);
   serial_configure_fifo(com);
   serial_configure_modem(com);
 }
 
-int serial_is_transmit_fifo_empty(u_int32 com)
+int serial_is_transmit_fifo_empty(uint32_t com)
 {
   /* 0x20 = 0010 0000 */
   return inb(SERIAL_LINE_STATUS_PORT(com)) & 0x20;
 }
 
-void serial_write(u_int16 com, char * s)
+void serial_write(uint16_t com, char * s)
 {
   int i = 0;
   while(s[i]) {
@@ -69,7 +69,7 @@ void serial_write(u_int16 com, char * s)
   }
 }
 
-void serial_write_char(u_int16 com, u_int8 c)
+void serial_write_char(uint16_t com, uint8_t c)
 {
     // Wait if buffer is full
     while (!serial_is_transmit_fifo_empty(com)) {}

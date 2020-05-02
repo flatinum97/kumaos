@@ -2,9 +2,9 @@
 #include "../assembly_interface.h"
 #include "../types.h"
 
-u_int8 *fb = (u_int8 *) 0x000B8000;
+uint8_t *fb = (uint8_t *) 0x000B8000;
 
-void fb_write_cell(u_int32 cell, u_int8 c, u_int8 fg, u_int8 bg)
+void fb_write_cell(uint32_t cell, uint8_t c, uint8_t fg, uint8_t bg)
 {
   int i = cell*2;
   fb[i] = c;

@@ -9,17 +9,17 @@ enum output_t {
 };
 
 struct gdt_t {
-  u_int32 address;
-  u_int16 size;
+  uint32_t address;
+  uint16_t size;
 } __attribute__((packed));
 
 struct segment_descriptor_t {
-  u_int16 base_0_15;
-  u_int16 limit_0_15;
-  u_int8 base_24_31;
-  u_int8 flags_and_limit_16_19;
-  u_int8 access_byte;
-  u_int8 base_16_23;
+  uint16_t base_0_15;
+  uint16_t limit_0_15;
+  uint8_t base_24_31;
+  uint8_t flags_and_limit_16_19;
+  uint8_t access_byte;
+  uint8_t base_16_23;
 } __attribute__((packed));
 
 enum segment_selector_t {
@@ -33,7 +33,7 @@ struct segment_descriptor_t segment_descriptors[3];
 void initialize_gdt()
 {
   struct gdt_t gdt;
-  gdt.address = (u_int32) segment_descriptors;
+  gdt.address = (uint32_t) segment_descriptors;
   gdt.size = sizeof(segment_descriptors);
 
   segment_descriptors[KERNEL_CODE_SEGMENT].base_0_15 = 0x0;

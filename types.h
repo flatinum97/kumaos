@@ -1,6 +1,6 @@
-typedef unsigned char u_int8;
-typedef u_int8 byte;
-typedef unsigned short u_int16;
-typedef u_int16 byte2;
-typedef unsigned long u_int32;
-typedef u_int16 byte4;
+typedef unsigned char uint8_t;
+typedef uint8_t byte;
+typedef unsigned short uint16_t;
+typedef uint16_t byte2;
+typedef unsigned long uint32_t;
+typedef uint16_t byte4;

@@ -26,6 +26,6 @@
 
 void clear_screen();
 void fb_write(char *s);
-void move_cursor(u_int16 row, u_int16 col);
+void move_cursor(uint16_t row, uint16_t col);
 
 #endif
