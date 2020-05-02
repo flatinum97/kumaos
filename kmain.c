@@ -23,6 +23,11 @@ void printf(char *s)
   write(SCREEN, s);
 }
 
+void log(char *s)
+{
+  write(LOG, s);
+}
+
 void kmain()
 {
   clear_screen();
@@ -30,7 +35,7 @@ void kmain()
   printf(welcome_message);
 
   serial_init(SERIAL_COM1_BASE);
-  write(LOG, "Initialized serial port.\n");
+  log("Initialized serial port.\n");
 
   move_cursor(10, 0);
 
