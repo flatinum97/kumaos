@@ -3,11 +3,7 @@
 #include "assembly_interface.h"
 #include "asm_interrupts.h"
 #include "types.h"
-
-enum output_t {
-  SCREEN,
-  LOG
-};
+#include "stdio.h"
 
 struct gdt_description_structure_t {
   uint16_t size;
@@ -102,31 +98,9 @@ void initialize_idt(void)
   load_idt(&idt_description_structure);
 }
 
-void write(enum output_t output_device, char *s)
-{
-  switch (output_device) {
-    case (SCREEN):
-      fb_write(s);
-      break;
-    case (LOG):
-      serial_write(SERIAL_COM1_BASE, s);
-      break;
-  }
-}
-
 void printf(char *s)
 {
-  write(SCREEN, s);
-}
-
-void log(char *s)
-{
-  write(LOG, s);
-}
-
-void interrupt_handler() {
-  log("interrupt_handler()\n");
-  return;
+  fprintf(SCREEN, s);
 }
 
 void kmain()

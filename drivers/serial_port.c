@@ -60,13 +60,14 @@ int serial_is_transmit_fifo_empty(uint32_t com)
   return inb(SERIAL_LINE_STATUS_PORT(com)) & 0x20;
 }
 
-void serial_write(uint16_t com, char * s)
+int serial_write(uint16_t com, const char * s)
 {
   int i = 0;
   while(s[i]) {
     serial_write_char(com, s[i]);
     i++;
   }
+  return i;
 }
 
 void serial_write_char(uint16_t com, uint8_t c)
