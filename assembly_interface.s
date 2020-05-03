@@ -19,3 +19,16 @@ lgdt:
     mov edx, [esp+4]
     lgdt [edx]
     ret
+
+global load_idt
+
+load_idt:
+   mov eax, [esp+4]
+   lidt [eax]
+   ret
+
+global interrupt
+
+interrupt:
+    mov eax, [esp+4]
+    int 1
