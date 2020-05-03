@@ -16,6 +16,11 @@ int fprintf(FILE stream, const char *format, ...)
   return 0;
 }
 
+void printf(char *s)
+{
+  fprintf(SCREEN, s);
+}
+
 int log(char *format, ...)
 {
   return serial_write(SERIAL_COM1_BASE, format);

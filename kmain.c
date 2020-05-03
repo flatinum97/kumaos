@@ -98,11 +98,6 @@ void initialize_idt(void)
   load_idt(&idt_description_structure);
 }
 
-void printf(char *s)
-{
-  fprintf(SCREEN, s);
-}
-
 void kmain()
 {
   clear_screen();

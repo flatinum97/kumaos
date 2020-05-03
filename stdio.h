@@ -7,6 +7,7 @@ typedef enum output_t {
 } FILE;
 
 int fprintf (FILE stream, const char *format, ...);
+void printf(char *s);
 int log(char *format, ...);
 
 #endif

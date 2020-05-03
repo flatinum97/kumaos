@@ -1,4 +1,4 @@
-OBJECTS = loader.o asm_interrupts.o assembly_interface.o drivers/frame_buffer.o drivers/serial_port.o kmain.o stdio.o
+OBJECTS = loader.o interrupts.o asm_interrupts.o assembly_interface.o drivers/frame_buffer.o drivers/serial_port.o kmain.o stdio.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
          -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
