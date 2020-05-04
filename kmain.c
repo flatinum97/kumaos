@@ -116,6 +116,7 @@ void kmain()
   move_cursor(10, 0);
 
   interrupt(1);
+  log("Returned from the interrupt.\n");
 
   while(1);
 }
