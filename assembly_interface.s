@@ -31,4 +31,10 @@ global interrupt
 
 interrupt:
     mov eax, [esp+4]
-    int 1
+    int 9
+
+global sti
+
+sti:
+  sti
+  ret

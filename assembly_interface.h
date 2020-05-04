@@ -8,5 +8,6 @@ unsigned char inb(unsigned short port);
 void lgdt(void *gdt);
 void load_idt(void *idt);
 void interrupt(uint32_t interrupt_number);
+void sti();
 
 #endif
