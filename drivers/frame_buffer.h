@@ -25,7 +25,9 @@
 #define FB_WHITE         15
 
 void clear_screen();
+void fb_write_byte(uint8_t b);
 int fb_write(const char *s);
+void move_cursor_to_pos(unsigned short pos);
 void move_cursor(uint16_t row, uint16_t col);
 
 #endif

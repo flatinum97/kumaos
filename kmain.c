@@ -363,8 +363,8 @@ void initialize_idt(void)
 void kmain()
 {
   clear_screen();
-  static char *welcome_message = "Welcome to KUMAOS!";
-  printf(welcome_message);
+  // static char *welcome_message = "Welcome to KUMAOS!";
+  // printf(welcome_message);
 
   serial_init(SERIAL_COM1_BASE);
   log("Initialized serial port.\n");

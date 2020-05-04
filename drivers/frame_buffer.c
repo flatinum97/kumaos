@@ -4,6 +4,8 @@
 
 uint8_t *fb = (uint8_t *) 0x000B8000;
 
+uint16_t cursor_pos = 0;
+
 void fb_write_cell(uint32_t cell, uint8_t c, uint8_t fg, uint8_t bg)
 {
   int i = cell*2;
@@ -15,6 +17,16 @@ void clear_screen()
 {
   for (int i = 0; i < FB_CELLS; i++) {
     fb_write_cell(i, ' ', FB_BLACK, FB_BLACK);
+  }
+}
+
+void fb_write_byte(uint8_t b)
+{
+  fb_write_cell(cursor_pos, b, FB_WHITE, FB_BLACK);
+  cursor_pos++;
+
+  if (cursor_pos < FB_CELLS) {
+    move_cursor_to_pos(cursor_pos);
   }
 }
 
