@@ -40,6 +40,12 @@ int fb_write(const char *s)
   return i;
 }
 
+void fb_backspace() {
+  cursor_pos--;
+  fb_write_cell(cursor_pos, ' ', FB_BLACK, FB_BLACK);
+  move_cursor_to_pos(cursor_pos);
+}
+
 #define FB_COMMAND_PORT 0x3D4
 #define FB_DATA_PORT    0x3D5
 

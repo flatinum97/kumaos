@@ -7,8 +7,9 @@
 
 #define NUM_OF_KEYCODES 128
 
-#define LSHIFT 0x2A
-#define RSHIFT 0x36
+#define BACKSPACE 0x0E
+#define LSHIFT    0x2A
+#define RSHIFT    0x36
 
 char normal_scan_code_table[NUM_OF_KEYCODES] = {
   0,    // 0x00
@@ -287,6 +288,11 @@ void keyboard_interrupt_handler()
   } else {
     // a scan code when a key is up is equal to the number when a key is down, plus 128
     key_pressed[scan_code - NUM_OF_KEYCODES] = 0;
+    return;
+  }
+
+  if (scan_code == BACKSPACE) {
+    fb_backspace();
     return;
   }
 
