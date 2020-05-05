@@ -7,7 +7,9 @@ drivers/pic.o \
 drivers/serial_port.o \
 interrupts.o \
 kmain.o \
-stdio.o
+stdio.o \
+global_descriptor_table.o \
+interrupt_descriptor_table.o
 
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
