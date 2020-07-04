@@ -2,6 +2,7 @@
 #include "drivers/serial_port.h"
 #include "drivers/pic.h"
 #include "assembly_interface.h"
+#include "page_table.h"
 #include "types.h"
 #include "stdio.h"
 #include "global_descriptor_table.h"
@@ -24,6 +25,17 @@ void kmain()
 
   pic_init();
   log("Initialized PIC\n");
+
+  page_directory_t pd = initialize_page_directory();
+  log("Initialized page directory\n");
+
+  log("Setting page directory...\n");
+  set_page_directory(pd);
+  log("Set page directory.\n");
+
+  log("Enabling paging...\n");
+  enable_paging();
+  log("Paging enabled.\n");
 
   while(1) {}
 }

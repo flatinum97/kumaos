@@ -9,5 +9,7 @@ void lgdt(void *gdt);
 void load_idt(void *idt);
 void interrupt(uint32_t interrupt_number);
 void sti();
+void set_page_directory();
+void enable_paging();
 
 #endif

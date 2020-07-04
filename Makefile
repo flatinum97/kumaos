@@ -9,7 +9,8 @@ interrupts.o \
 kmain.o \
 stdio.o \
 global_descriptor_table.o \
-interrupt_descriptor_table.o
+interrupt_descriptor_table.o \
+page_table.o
 
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \

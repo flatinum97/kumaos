@@ -15,14 +15,15 @@ common_interrupt_handler:
     push edx
     push esi
     push edi
-    push esp
     push ebp
+    mov  eax, cr2
+    push eax
 
     ; call the C function
     call interrupt_handler
 
+    add esp, 4 ; cr2
     pop ebp
-    pop esp
     pop edi
     pop esi
     pop edx

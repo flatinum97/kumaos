@@ -18,7 +18,15 @@ loader:
     mov esp, kernel_stack + KERNEL_STACK_SIZE
     jmp kmain
 
+global boot_pagedir
+global boot_pagetab1
 section .bss
 align 4
 kernel_stack:
     resb KERNEL_STACK_SIZE
+
+align 4096
+boot_pagedir:
+    resb 4096
+boot_pagetab1:
+    resb 4096
