@@ -2,14 +2,14 @@
 #include "drivers/frame_buffer.h"
 #include "drivers/serial_port.h"
 
-int fprintf(FILE stream, const char *format, ...)
+int fprintf(FILE stream, const char *s)
 {
   switch (stream) {
     case (SCREEN):
-      return fb_write(format);
+      return fb_write(s);
       break;
     case (LOG):
-      return serial_write(SERIAL_COM1_BASE, format);
+      return serial_write(SERIAL_COM1_BASE, s);
       break;
   }
 
@@ -21,7 +21,7 @@ void printf(char *s)
   fprintf(SCREEN, s);
 }
 
-int log(char *format, ...)
+int log(char *s)
 {
-  return serial_write(SERIAL_COM1_BASE, format);
+  return fprintf(LOG, s);
 }

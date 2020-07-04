@@ -6,8 +6,8 @@ typedef enum output_t {
   LOG
 } FILE;
 
-int fprintf (FILE stream, const char *format, ...);
+int fprintf (FILE stream, const char *s);
 void printf(char *s);
-int log(char *format, ...);
+int log(char *s);
 
 #endif
